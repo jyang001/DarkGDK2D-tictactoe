@@ -8,9 +8,9 @@ class Board {
 
 	public:
 		Board();
-		~Board();
 		bool checkBoard();
 		void LoadImages();
 		//friend class Marker;
 };
 #endif
+//#include <DynIntStack.cpp>
