@@ -18,39 +18,30 @@ void DarkGDK (void) {
 	dbSprite(1,0,0,1);
 
 	Board B;
+	Player p1('x');
+	Player p2('o');
+	
 	B.LoadImages();
 
 	dbSprite(2,0,0,2);
-	dbSprite(3,200,0,3);
-	dbSprite(4,400,0,4);//
-	dbSprite(5,0,200,5);//
-	dbSprite(6,200,200,6);
-	dbSprite(7,400,200,7);
-	dbSprite(8,0,400,8);
-	dbSprite(9,200,400,9);
-	dbSprite(10,400,400,10);
+	dbSprite(3,200,0,2);
+	dbSprite(4,400,0,2);
+	dbSprite(5,0,200,2);
+	dbSprite(6,200,200,2);
+	dbSprite(7,400,200,2);
+	dbSprite(8,0,400,2);
+	dbSprite(9,200,400,2);
+	dbSprite(10,400,400,2);
 
-	dbLoadImage("1.bmp",11);
-	dbCreateAnimatedSprite(11,"1.bmp",2,2,11); //b4 dbSprite()
+	dbLoadImage("x.bmp",11);
+	dbCreateAnimatedSprite(11,"x.bmp",2,2,11); //b4 dbSprite()
 	dbSprite(11,0,0,11);
 	
 	//dbDisableEscapeKey ();
 	while (LoopGDK()) {
-		if ((dbMouseClick() == 1) && (dbMouseX() < 200) && (dbMouseY() < 200)) {
-			dbPlaySprite(11,1,4,100);	
-		}
-		
-		/*
-		if (dbUpKey() == 1) {
-			dbPlaySprite(2,1,4,100);
-		}
-		else {
-			dbSetSpriteFrame(2,1);
-		}
-		*/
+		p1.click();
+		p2.click();
 
-		//Player p1("x");
-		//Player p2("o");
 		if (dbEscapeKey())
 			break;
 
