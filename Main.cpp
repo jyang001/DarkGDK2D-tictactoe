@@ -1,6 +1,9 @@
 #include "DarkGDK.h"
 #include "Board.h"
 #include "Player.h"
+#include<iostream>
+#include <stdio.h>
+using namespace std;
 
 void DarkGDK (void) {
 	dbSyncOn();
@@ -20,7 +23,7 @@ void DarkGDK (void) {
 	Board B;
 	Player p1('x');
 	Player p2('o');
-	
+
 	B.LoadImages();
 
 	dbSprite(2,0,0,2);
@@ -32,16 +35,22 @@ void DarkGDK (void) {
 	dbSprite(8,0,400,2);
 	dbSprite(9,200,400,2);
 	dbSprite(10,400,400,2);
-
-	dbLoadImage("x.bmp",11);
-	dbCreateAnimatedSprite(11,"x.bmp",2,2,11); //b4 dbSprite()
-	dbSprite(11,0,0,11);
 	
 	//dbDisableEscapeKey ();
 	while (LoopGDK()) {
-		p1.click();
-		p2.click();
-
+		int x = dbScanCode();
+		cout <<x <<endl;
+		
+		if((dbMouseClick()) && (dbMouseX() >= 0) && (dbMouseX() <= 200) && (dbMouseY() >= 0) && (dbMouseY() <= 200)) {
+			dbSprite(11,0,0,11);
+		}
+		/*
+		B.click(p1);
+		B.checkBoard(p1.get_sign()); //fix
+		B.click(p2);
+		B.checkBoard(p2.get_sign()); //fix
+		B.In_Round();
+		*/
 		if (dbEscapeKey())
 			break;
 
