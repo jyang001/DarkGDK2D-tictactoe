@@ -3,13 +3,14 @@
 Created a TicTacToe game using Visual Studio 2008 and the portal 2D engine DarkGDK2D to create a TicTacToe game with a GUI.
 
 Used Microsoft Paint to create the following images:
-* The standard 'X' and 'O' signs
-* The 9 places in the board
+* The standard 'X' sign
+* The Board
 
 ## Current Progress
 * Displays the Board
-* Implemented the Sprites for the signs to be drawn 
-* Must implement the ability receive user input to display the user moves
+* Implemented 'X' sign
+* Implemented ability to obtain user input
+* Need to be able to draw sprites at location of click
 
 ## Prerequisites
 * DarkGDK2D
@@ -22,5 +23,6 @@ Used Microsoft Paint to create the following images:
 
 ## How to Run
 * Put the files into a folder and put the folder in the Documents\Visual Studio 2008\Projects directory. All files including the .bmp 
-files must be in the folder for the game to load properly. 
+files must be in the folder for the game to load properly.
+* Load the 'Tic Tac Toe.vcproj' file
 * To run the game simply run the Main.cpp 
