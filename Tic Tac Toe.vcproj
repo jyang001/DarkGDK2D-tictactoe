@@ -41,6 +41,8 @@
 				AdditionalOptions="/MT"
 				Optimization="0"
 				RuntimeLibrary="1"
+				ExpandAttributedSource="false"
+				AssemblerOutput="2"
 				DebugInformationFormat="4"
 			/>
 			<Tool
@@ -151,14 +153,6 @@
 			Filter="txt;cpp;h&quot;n"
 			>
 			<File
-				RelativePath=".\all.bmp"
-				>
-			</File>
-			<File
-				RelativePath=".\background.bmp"
-				>
-			</File>
-			<File
 				RelativePath=".\Board.cpp"
 				>
 			</File>
@@ -182,11 +176,23 @@
 				RelativePath=".\ReadMe.txt"
 				>
 			</File>
-			<File
-				RelativePath=".\x.bmp"
-				>
-			</File>
 		</Filter>
+		<File
+			RelativePath=".\all.bmp"
+			>
+		</File>
+		<File
+			RelativePath=".\background.bmp"
+			>
+		</File>
+		<File
+			RelativePath=".\x.bmp"
+			>
+		</File>
+		<File
+			RelativePath=".\x1.bmp"
+			>
+		</File>
 	</Files>
 	<Globals>
 	</Globals>

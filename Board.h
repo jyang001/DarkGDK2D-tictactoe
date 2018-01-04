@@ -4,16 +4,16 @@
 
 class Board {
 	int round;
-	int B[3][3];
-	char turn = 'o';
+	char B[9];
+	char turn;
 
 	public:
 		Board();
-		bool checkBoard(char c);
+		bool checkBoard(char s);
 		bool Full();
 		void LoadImages();
 		void In_Round();
-		void click();
+		void click(Player p);
 		
 		//friend class Marker;
 };
