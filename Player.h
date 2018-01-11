@@ -9,10 +9,11 @@ class Player {
 		void click();
 		char get_sign();
 		void draw(int x, int y);
-		bool win();
+		int get_amount();
 
 	private:
 		char sign;
+		int amount;
 };
 #endif;
 

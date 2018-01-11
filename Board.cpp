@@ -5,7 +5,7 @@
 #include <stdio.h>
 using namespace std;
 
-Board::Board(): round(0), turn('o') {
+Board::Board(): round(0),last_turn('o'),amount(11) {
 	for (int i = 0; i < 9; i++) {
 		B[i] = 'e';
 	}
@@ -15,7 +15,7 @@ Board::Board(): round(0), turn('o') {
 checks the board for the win condition
 */
 bool Board::checkBoard(char s) {
-	if(turn > 4) 
+	if(round > 4) 
 		return true;
 	return false;
 }
@@ -27,28 +27,60 @@ bool Board::Full() {
 	return (round > 9);
 }
 
-
 /*
 enumerates images of board
 */
 void Board::LoadImages() {
-	dbLoadImage("all.bmp",2);
 	dbLoadImage("x1.bmp",11);
+	dbLoadImage("o.bmp",12);
+	dbLoadImage("all.bmp",2);
 }
 
-/*
-increments round number
-*/
-void Board::In_Round() {
-	round++;
-}
+void Board::Click(Player p) {
 
-/*
-Determines where the click was registered on the board
-Draws the Sprite
-*/
-void Board::click(Player p) {
-	if(dbMouseClick() && dbMouseMoveX() >= 0 && dbMouseMoveX() <= 200 && dbMouseMoveY() >= 0 && dbMouseMoveY() <= 200) {
-		p.draw(0,0);
+	if(dbMouseClick() && dbMouseX() >= 0 && dbMouseX() <= 200 && dbMouseY() >= 0 && dbMouseY() <= 200) {
+		if(B[0] == 'e') {
+			last_turn = p.get_sign();
+			B[0] = p.get_sign();
+			if (p.get_sign() == 'x') {
+				dbSprite(amount,0,0,11);
+			}
+			else if (p.get_sign() == 'o') {
+				dbSprite(amount,0,0,12);
+			}
+			amount++;
+		}
 	}
+
+	if(dbMouseClick() && dbMouseX() > 200 && dbMouseX() <= 400 && dbMouseY() >= 0 && dbMouseY() <= 200) {
+		if (B[1] == 'e') {
+			last_turn = p.get_sign();
+			B[1] = p.get_sign();
+			if (p.get_sign() == 'x') {
+				dbSprite(amount,200,0,11);
+			}
+			else if (p.get_sign() == 'o') {
+				dbSprite(amount,200,0,12);
+			}
+			amount++;
+		}
+	}
+
+	if(dbMouseClick() && dbMouseX() > 400 && dbMouseX() <= 600 && dbMouseY() >= 0 && dbMouseY() <= 200) {
+		if (B[2] == 'e') {
+			last_turn = p.get_sign();
+			B[2] = p.get_sign();
+			if (p.get_sign() == 'x') {
+				dbSprite(amount,400,0,11);
+			}
+			else if (p.get_sign() == 'o') {
+				dbSprite(amount,400,0,12);
+			}
+			amount++;
+		}
+	}
+}
+
+char Board::GetLast() {
+	return last_turn;
 }
