@@ -5,17 +5,16 @@
 class Board {
 	int round;
 	char B[9];
-	char turn;
+	char last_turn;
+	int amount;
 
 	public:
 		Board();
 		bool checkBoard(char s);
 		bool Full();
 		void LoadImages();
-		void In_Round();
-		void click(Player p);
-		
-		//friend class Marker;
+		void Click(Player p);
+		char GetLast();
 };
 #endif
 //#include <DynIntStack.cpp>

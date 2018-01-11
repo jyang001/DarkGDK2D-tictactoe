@@ -35,22 +35,17 @@ void DarkGDK (void) {
 	dbSprite(8,0,400,2);
 	dbSprite(9,200,400,2);
 	dbSprite(10,400,400,2);
-	
+	char turn = 'x';
+
 	//dbDisableEscapeKey ();
 	while (LoopGDK()) {
-		int x = dbScanCode();
-		cout <<x <<endl;
-		
-		if((dbMouseClick()) && (dbMouseX() >= 0) && (dbMouseX() <= 200) && (dbMouseY() >= 0) && (dbMouseY() <= 200)) {
-			dbSprite(11,0,0,11);
+		if (B.GetLast() == p1.get_sign()) {
+			B.Click(p2);
 		}
-		/*
-		B.click(p1);
-		B.checkBoard(p1.get_sign()); //fix
-		B.click(p2);
-		B.checkBoard(p2.get_sign()); //fix
-		B.In_Round();
-		*/
+		else if (B.GetLast() == p2.get_sign()) {
+			B.Click(p1);
+		}
+
 		if (dbEscapeKey())
 			break;
 
