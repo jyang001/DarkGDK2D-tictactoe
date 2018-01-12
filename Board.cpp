@@ -48,7 +48,6 @@ void Board::Click(Player p) {
 			else if (p.get_sign() == 'o') {
 				dbSprite(amount,0,0,12);
 			}
-			amount++;
 		}
 	}
 
@@ -62,7 +61,6 @@ void Board::Click(Player p) {
 			else if (p.get_sign() == 'o') {
 				dbSprite(amount,200,0,12);
 			}
-			amount++;
 		}
 	}
 
@@ -70,15 +68,96 @@ void Board::Click(Player p) {
 		if (B[2] == 'e') {
 			last_turn = p.get_sign();
 			B[2] = p.get_sign();
-			if (p.get_sign() == 'x') {
+
+			if (p.get_sign() == 'x') 
 				dbSprite(amount,400,0,11);
-			}
-			else if (p.get_sign() == 'o') {
+
+			else if (p.get_sign() == 'o') 
 				dbSprite(amount,400,0,12);
-			}
-			amount++;
 		}
 	}
+	
+	//2nd row
+	if(dbMouseClick() && dbMouseX() >= 0 && dbMouseX() <= 200 && dbMouseY() > 200 && dbMouseY() <= 400) {
+		if (B[3] == 'e') {
+			last_turn = p.get_sign();
+			B[3] = p.get_sign();
+
+			if (p.get_sign() == 'x') 
+				dbSprite(amount,0,200,11);
+
+			else if (p.get_sign() == 'o') 
+				dbSprite(amount,0,200,12);
+		}
+	}
+
+	if(dbMouseClick() && dbMouseX() > 200 && dbMouseX() <= 400 && dbMouseY() > 200 && dbMouseY() <= 400) {
+		if (B[4] == 'e') {
+			last_turn = p.get_sign();
+			B[4] = p.get_sign();
+
+			if (p.get_sign() == 'x') 
+				dbSprite(amount,200,200,11);
+
+			else if (p.get_sign() == 'o') 
+				dbSprite(amount,200,200,12);
+		}
+	}
+
+	if(dbMouseClick() && dbMouseX() > 400 && dbMouseX() <= 600 && dbMouseY() > 200 && dbMouseY() <= 400) {
+		if (B[5] == 'e') {
+			last_turn = p.get_sign();
+			B[5] = p.get_sign();
+
+			if (p.get_sign() == 'x') 
+				dbSprite(amount,400,200,11);
+
+			else if (p.get_sign() == 'o') 
+				dbSprite(amount,400,200,12);
+		}
+	}
+
+	//3rd row
+	if(dbMouseClick() && dbMouseX() >= 0 && dbMouseX() <= 200 && dbMouseY() > 400 && dbMouseY() <= 600) {
+		if (B[6] == 'e') {
+			last_turn = p.get_sign();
+			B[6] = p.get_sign();
+
+			if (p.get_sign() == 'x') 
+				dbSprite(amount,0,400,11);
+
+			else if (p.get_sign() == 'o') 
+				dbSprite(amount,0,400,12);
+		}
+	}
+
+	if(dbMouseClick() && dbMouseX() > 200 && dbMouseX() <= 400 && dbMouseY() > 400 && dbMouseY() <= 600) {
+		if (B[7] == 'e') {
+			last_turn = p.get_sign();
+			B[7] = p.get_sign();
+
+			if (p.get_sign() == 'x') 
+				dbSprite(amount,200,400,11);
+
+			else if (p.get_sign() == 'o') 
+				dbSprite(amount,200,400,12);
+		}
+	}
+
+	if(dbMouseClick() && dbMouseX() > 400 && dbMouseX() <= 600 && dbMouseY() > 400 && dbMouseY() <= 600) {
+		if (B[8] == 'e') {
+			last_turn = p.get_sign();
+			B[8] = p.get_sign();
+
+			if (p.get_sign() == 'x') 
+				dbSprite(amount,400,400,11);
+
+			else if (p.get_sign() == 'o') 
+				dbSprite(amount,400,400,12);
+		}
+	}
+
+	amount++;
 }
 
 char Board::GetLast() {

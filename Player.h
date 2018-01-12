@@ -8,7 +8,6 @@ class Player {
 		Player(char input);
 		void click();
 		char get_sign();
-		void draw(int x, int y);
 		int get_amount();
 
 	private:
