@@ -6,9 +6,7 @@
 class Player {
 	public:
 		Player(char input);
-		void click();
 		char get_sign();
-		int get_amount();
 
 	private:
 		char sign;

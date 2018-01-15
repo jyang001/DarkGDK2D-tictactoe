@@ -5,6 +5,14 @@
 #include <stdio.h>
 using namespace std;
 
+bool GameRun(string input) {
+	int result = MessageBoxA (NULL, input.c_str(), "Exit Game", MB_YESNO);
+	if (result == IDYES)
+		return true;
+	else if (result == IDNO) 
+		return true;
+}
+
 void DarkGDK (void) {
 	dbSyncOn();
 	dbSyncRate(60);
@@ -35,21 +43,37 @@ void DarkGDK (void) {
 	dbSprite(8,0,400,2);
 	dbSprite(9,200,400,2);
 	dbSprite(10,400,400,2);
-	char turn = 'x';
+	int i = 0;
+	
+	bool condition = false;
+	string message;
 
 	//dbDisableEscapeKey ();
 	while (LoopGDK()) {
+
+		if (B.won('x')) 
+			message = "X has won";
+
+		else if (B.won('o'))
+			message = "O has won";
+
+		else if (B.Full()) 
+			message = "It's a Tie";
+		
 		if (B.GetLast() == p1.get_sign()) {
 			B.Click(p2);
 		}
+
 		else if (B.GetLast() == p2.get_sign()) {
 			B.Click(p1);
 		}
-
-		if (dbEscapeKey())
+		
+		if(dbEscapeKey() || condition) {
 			break;
-
+		}
+		
 		dbSync();
 	}
+
 	return;
 }

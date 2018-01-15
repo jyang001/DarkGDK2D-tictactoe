@@ -10,8 +10,9 @@ class Board {
 
 	public:
 		Board();
-		bool checkBoard(char s);
+		bool won(char s);
 		bool Full();
+		//char won();
 		void LoadImages();
 		void Click(Player p);
 		char GetLast();

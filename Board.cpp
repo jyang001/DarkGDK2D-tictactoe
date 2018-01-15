@@ -2,10 +2,11 @@
 #include "Player.h"
 #include "Board.h"
 #include<iostream>
+#include<cassert>
 #include <stdio.h>
 using namespace std;
 
-Board::Board(): round(0),last_turn('o'),amount(11) {
+Board::Board(): round(1),last_turn('o'),amount(11) {
 	for (int i = 0; i < 9; i++) {
 		B[i] = 'e';
 	}
@@ -14,9 +15,22 @@ Board::Board(): round(0),last_turn('o'),amount(11) {
 /*
 checks the board for the win condition
 */
-bool Board::checkBoard(char s) {
-	if(round > 4) 
+bool Board::won(char s) {
+	for (int i = 0 ; i < 3; i++) {
+		if ((B[i] == s) && (B[i+1] == s) && (B[i+2] == s)) //horizontal win condition
+			return true;
+		else if ((B[i] == s) && (B[i+3] == s) && (B[i+6] == s)) //vertical win condition
+			return true;
+	}
+
+	//diagnol win conditions	
+	if ( (B[0] == s) && (B[4] == s) && (B[8] == s) ) 
 		return true;
+
+	else if ( (B[2] == s) && (B[4] == s) && (B[6] == s)) 
+		return true;
+	
+	//if it does not meet the criteria
 	return false;
 }
 
@@ -24,30 +38,35 @@ bool Board::checkBoard(char s) {
 Tie Condition: if the board is full
 */
 bool Board::Full() {
-	return (round > 9);
+	return (round  == 9);
 }
 
 /*
-enumerates images of board
+Enumerates images of board
 */
 void Board::LoadImages() {
-	dbLoadImage("x1.bmp",11);
+	dbLoadImage("x.bmp",11);
 	dbLoadImage("o.bmp",12);
 	dbLoadImage("all.bmp",2);
 }
 
-void Board::Click(Player p) {
 
+/*
+Registers the area of the user input and displays the proper Sprite
+Increments Sprite Number and Round Number after every Click
+*/
+void Board::Click(Player p) {
 	if(dbMouseClick() && dbMouseX() >= 0 && dbMouseX() <= 200 && dbMouseY() >= 0 && dbMouseY() <= 200) {
 		if(B[0] == 'e') {
 			last_turn = p.get_sign();
 			B[0] = p.get_sign();
-			if (p.get_sign() == 'x') {
+			if (p.get_sign() == 'x') 
 				dbSprite(amount,0,0,11);
-			}
-			else if (p.get_sign() == 'o') {
+
+			else if (p.get_sign() == 'o') 
 				dbSprite(amount,0,0,12);
-			}
+
+			round++;
 		}
 	}
 
@@ -55,12 +74,13 @@ void Board::Click(Player p) {
 		if (B[1] == 'e') {
 			last_turn = p.get_sign();
 			B[1] = p.get_sign();
-			if (p.get_sign() == 'x') {
+			if (p.get_sign() == 'x') 
 				dbSprite(amount,200,0,11);
-			}
-			else if (p.get_sign() == 'o') {
+
+			else if (p.get_sign() == 'o') 
 				dbSprite(amount,200,0,12);
-			}
+
+			round++;
 		}
 	}
 
@@ -74,6 +94,8 @@ void Board::Click(Player p) {
 
 			else if (p.get_sign() == 'o') 
 				dbSprite(amount,400,0,12);
+
+			round++;
 		}
 	}
 	
@@ -88,6 +110,8 @@ void Board::Click(Player p) {
 
 			else if (p.get_sign() == 'o') 
 				dbSprite(amount,0,200,12);
+
+			round++;
 		}
 	}
 
@@ -101,6 +125,7 @@ void Board::Click(Player p) {
 
 			else if (p.get_sign() == 'o') 
 				dbSprite(amount,200,200,12);
+			round++;
 		}
 	}
 
@@ -114,6 +139,8 @@ void Board::Click(Player p) {
 
 			else if (p.get_sign() == 'o') 
 				dbSprite(amount,400,200,12);
+
+			round++;
 		}
 	}
 
@@ -141,6 +168,8 @@ void Board::Click(Player p) {
 
 			else if (p.get_sign() == 'o') 
 				dbSprite(amount,200,400,12);
+
+			round++;
 		}
 	}
 
@@ -154,9 +183,10 @@ void Board::Click(Player p) {
 
 			else if (p.get_sign() == 'o') 
 				dbSprite(amount,400,400,12);
+
+			round++;
 		}
 	}
-
 	amount++;
 }
 

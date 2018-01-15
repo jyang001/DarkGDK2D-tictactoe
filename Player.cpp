@@ -9,7 +9,3 @@ Player::Player(char input): sign(input), amount(10) {}
 char Player::get_sign() {
 	return sign;
 }
-
-int Player::get_amount() {
-	return amount;
-}
