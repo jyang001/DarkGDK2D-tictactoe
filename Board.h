@@ -12,10 +12,11 @@ class Board {
 		Board();
 		bool won(char s);
 		bool Full();
-		//char won();
 		void LoadImages();
 		void Click(Player p);
 		char GetLast();
+		void ResetBoard();
+
 };
 #endif
 //#include <DynIntStack.cpp>

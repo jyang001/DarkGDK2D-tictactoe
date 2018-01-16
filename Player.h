@@ -10,7 +10,6 @@ class Player {
 
 	private:
 		char sign;
-		int amount;
 };
 #endif;
 

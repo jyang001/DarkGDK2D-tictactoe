@@ -2,13 +2,15 @@
 #include "Board.h"
 #include "Player.h"
 #include<iostream>
+#include<string>
 #include <stdio.h>
 using namespace std;
 
 bool GameRun(string input) {
-	int result = MessageBoxA (NULL, input.c_str(), "Exit Game", MB_YESNO);
-	if (result == IDYES)
-		return true;
+	int result = MessageBoxA (NULL, input.c_str(), "Score Screen" , MB_YESNO);
+	if (result == IDYES) {
+		return false;
+	}
 	else if (result == IDNO) 
 		return true;
 }
@@ -45,31 +47,50 @@ void DarkGDK (void) {
 	dbSprite(10,400,400,2);
 	int i = 0;
 	
-	bool condition = false;
+	bool condition = false; //Record user input to keep playing or not
 	string message;
+	bool state = false; //User Screen State
 
 	//dbDisableEscapeKey ();
 	while (LoopGDK()) {
 
-		if (B.won('x')) 
-			message = "X has won";
+		//win or lose conditions
+		if (B.won('x')) {
+			message = "X has won; Play Again?";
+			state = true;
+		}
 
-		else if (B.won('o'))
-			message = "O has won";
+		else if (B.won('o')) {
+			message = "O has won; Play Again?";
+			state = true;
+		}
 
-		else if (B.Full()) 
-			message = "It's a Tie";
+		else if (B.Full()) { 
+			message = "It's a Tie; Play Again?";
+			state = true;
+		}
 		
+		if (state) {
+			bool check = GameRun(message);
+			if (check) //Clicked Don't Play Again
+				break;
+
+			else if (!check) { //Clicked Play Again
+				B.ResetBoard();
+				state = false;
+				condition = false;
+			}
+		}
+
+		if(dbEscapeKey() || condition) 
+			break;
+
 		if (B.GetLast() == p1.get_sign()) {
 			B.Click(p2);
 		}
 
 		else if (B.GetLast() == p2.get_sign()) {
 			B.Click(p1);
-		}
-		
-		if(dbEscapeKey() || condition) {
-			break;
 		}
 		
 		dbSync();

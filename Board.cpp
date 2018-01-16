@@ -2,10 +2,15 @@
 #include "Player.h"
 #include "Board.h"
 #include<iostream>
-#include<cassert>
 #include <stdio.h>
 using namespace std;
 
+/*
+Constructor
+*sets default person who went as 'o'
+*sets appropriate Sprite Number to not collide
+*marks every position on board for 'e' to declare it is empty
+*/
 Board::Board(): round(1),last_turn('o'),amount(11) {
 	for (int i = 0; i < 9; i++) {
 		B[i] = 'e';
@@ -13,14 +18,18 @@ Board::Board(): round(1),last_turn('o'),amount(11) {
 }
 
 /*
-checks the board for the win condition
+Checks the board for the win condition
 */
 bool Board::won(char s) {
-	for (int i = 0 ; i < 3; i++) {
-		if ((B[i] == s) && (B[i+1] == s) && (B[i+2] == s)) //horizontal win condition
-			return true;
-		else if ((B[i] == s) && (B[i+3] == s) && (B[i+6] == s)) //vertical win condition
-			return true;
+	int x = 0;
+	int y = 0;
+	while (x < 9 && y < 9) {
+		if ((B[x] == s) && (B[x+1] == s) && (B[x+2] == s)) //vertical win condition
+			return true;	
+		else if ((B[y] == s) && (B[y+3] == s) && (B[y+6] == s)) //horizontal win condition
+			return true;	
+		x+=3;
+		y++;
 	}
 
 	//diagnol win conditions	
@@ -190,6 +199,24 @@ void Board::Click(Player p) {
 	amount++;
 }
 
+/*
+Returns the sign of player who recently went
+*/
 char Board::GetLast() {
 	return last_turn;
+}
+
+
+/*
+Resets the board to original setting
+*/
+void Board::ResetBoard() {
+	for(int i = 11; i <= amount; i++) {
+		dbDeleteSprite(i);
+	}
+	for (int i = 0; i < 9; i++) {
+		B[i] = 'e';
+	}
+	round = 1;
+	last_turn = 'o';
 }

@@ -4,7 +4,7 @@
 #include<stdio.h>
 using namespace std;
 
-Player::Player(char input): sign(input), amount(10) {}
+Player::Player(char input): sign(input) {}
 
 char Player::get_sign() {
 	return sign;
