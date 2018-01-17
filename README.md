@@ -3,14 +3,13 @@
 Created a TicTacToe game using Visual Studio 2008 and the portal 2D engine DarkGDK2D to create a TicTacToe game with a GUI.
 
 Used Microsoft Paint to create the following images:
-* The standard 'X' sign
+* The standard 'X' and 'O' sign
 * The Board
 
-## Current Progress
-* Displays the Board
-* Implemented 'X' sign
-* Implemented ability to obtain user input
-* Need to be able to draw sprites at location of click
+## Game Directions
+* Follows standard Tic Tac Toe Rules
+* Will draw an 'X' or 'O' Sprite on the board that the player clicked
+*If a player has won or the game ends in a draw, a screen will appear asking if you wish to play again or quit
 
 ## Prerequisites
 * DarkGDK2D
